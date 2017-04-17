@@ -1,0 +1,45 @@
+@(controller: controllers.ChartController)
+@optionValue(optionValue: String, currentValue: String) = @{
+  if (currentValue.equals(optionValue))
+    "value=" + optionValue + " selected";
+  else
+    "value=" + optionValue;
+}
+@main {
+<div class="container m-t-60">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <form class="form-inline">
+      	@for(option <- controller.options()) {
+      	  <div class="form-group">
+      	    <label>@option.getLabel()</label>
+      	    <select name="@option.getName()" class="form-control">
+      	      @for(value <- option.getValues()) {
+      	        <option @optionValue(value.getValue(), option.currentValue())>@value.getLabel()</option>
+      	      }
+      	    </select>
+      	  </div>
+      	}
+        <button type="submit" class="btn btn-default">OK</button>
+      </form>
+    </div>
+  </div>
+
+  @for(curGroup <- controller.groups()) {
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>@curGroup.getName()</h1>
+      </div>
+    </div>
+    <div class="row">
+      @for(curChart <- curGroup.getCharts()) {
+        <div class="col-lg-6">
+          <iframe class="chart" src="@curChart.fullUrl()" scrolling="no"></iframe>
+        </div>
+      }
+    </div>
+  }
+  
+</div>
+}

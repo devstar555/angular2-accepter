@@ -1,0 +1,12 @@
+ - name: build-angular
+   service: angular
+   command: ng build --prod --deploy-url /assets/ng-reason/
+ - name: copy-angular
+   service: shell
+   command: cp ng-reason/dist/inline*.js public/ng-reason/inline.js && cp ng-reason/dist/main*.js public/ng-reason/main.bundle.js && cp ng-reason/dist/vendor.*.js public/ng-reason/vendor.bundle.js && cp ng-reason/dist/styles.*.css public/ng-reason/styles.bundle.css && cp ng-reason/dist/*.chunk.js public/ng-reason/ && rm -rf public/ng-assets && cp -r ng-reason/src/assets public/ng-assets
+ - name: build-play
+   service: play
+   command: activator test dist
+ - name: package-app
+   service: app
+   command: id

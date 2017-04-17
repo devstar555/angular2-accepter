@@ -1,0 +1,9 @@
+FROM kanduat/alpine3.4-build-java8-activator1.3
+MAINTAINER Dominik Bieringer <d.bieringer@dodax.com>
+
+RUN mkdir -p /tmp/init/project
+ADD build.sbt /tmp/init/build.sbt
+ADD project/plugins.sbt /tmp/init/project/plugins.sbt
+RUN cd /tmp/init && activator dist && rm -rf /tmp/init
+
+CMD ["activator","~run"]

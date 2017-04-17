@@ -1,0 +1,76 @@
+<div class="container m-t-120">
+  <div class="row">
+    <div class="tab-content">
+      <div class="tab-pane fade in active">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary add-form">
+              <div class="panel-heading">
+                Tests
+              </div>
+              <div class="panel-body">
+                <form class="form-horizontal">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-1">
+                      <div class="form-group">
+                        <label class="control-label">Timeout Milliseconds</label>
+                        <span class="validation-color">*</span>
+                        <input class="form-control" type="number" [(ngModel)]="testDataSet.timeoutMilliseconds" [ngModelOptions]="{standalone: true}" required>
+                      </div>
+                      <div class="form-group" *ngIf="tableType != 'platform'">
+                        <label class="control-label">Expect Accepts</label>
+                        <rl-tag-input
+                          [addOnBlur]="false"
+                          [autocomplete]="true"
+                          [(ngModel)]="testDataSet.expectAccept"
+                          [ngModelOptions]="{standalone: true}"
+                          placeholder="Add Accepts here">
+                        </rl-tag-input>
+                      </div>
+                      <div class="form-group" *ngIf="tableType != 'platform'">
+                        <label class="control-label">Expect Reviews</label>
+                        <rl-tag-input
+                          [addOnBlur]="false"
+                          [autocomplete]="true"
+                          [(ngModel)]="testDataSet.expectReview"
+                          [ngModelOptions]="{standalone: true}"
+                          placeholder="Add Reviews here">
+                        </rl-tag-input>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-2">
+                      <div class="form-group" *ngIf="tableType != 'platform'">
+                        <label class="control-label">Performance</label>
+                        <rl-tag-input
+                          [addOnBlur]="false"
+                          [autocomplete]="true"
+                          [(ngModel)]="testDataSet.performance"
+                          [ngModelOptions]="{standalone: true}"
+                          placeholder="Performace">
+                        </rl-tag-input>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="panel-footer text-center">
+                <button type="button" class="btn btn-primary no-float" (click)="onSubmitTestDataSet(submit_result)">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal cssClass="modal-delete-confirm" #submit_result [keyboard]="false" [backdrop]="static">
+  <modal-body>
+    {{confirm_description}}
+  </modal-body>
+  <modal-footer>
+    <div class="text-center">
+      <button type="button" class="btn btn-default no-float" data-dismiss="delete_confirm" (click)="submit_result.dismiss()">Close</button>
+    </div>
+  </modal-footer>
+</modal>

@@ -1,0 +1,193 @@
+<div class="row" *ngIf="tableType != 'multiple'">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-primary add-form">
+      <div class="panel-heading">
+        <a class="pull-left" (click)="onBackBtn()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        Add New {{tableType}}
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group" *ngIf="tableType == 'filter'">
+            <label class="control-label">Select Filter Type</label>
+            <select class="form-control" [ngModel]="newData.filterType" (ngModelChange)="onSelectFilterType($event)" [ngModelOptions]="{standalone: true}">
+              <option value="0">Person</option>
+              <option value="1">Company</option>
+              <option value="2">Street</option>
+              <option value="3">Phone</option>
+              <option value="4">Email</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-1">
+              <div class="form-group">
+                <label class="control-label">{{formFieldNameLabel(tableType)}}</label>
+                <span class="validation-color">*</span>
+                <input class="form-control" type="text" [(ngModel)]="newData.name" [ngModelOptions]="{standalone: true}" required>
+              </div>
+              <div class="form-group" *ngIf="showCountryField()">
+                <label class="control-label">Country</label>
+                <select class="form-control" [(ngModel)]="newData.country" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let country of publicService.country_list" [value]="country.code">{{country.name}}</option>
+                </select>
+              </div>
+              <div class="form-group" *ngIf="showCountryField()">
+                <label class="control-label">Zip Code</label>
+                <input class="form-control" type="text" [(ngModel)]="newData.zip" [ngModelOptions]="{standalone: true}" (keydown)="zipcodeKeydown(1)" type="text">
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-2">
+              <div class="form-group" *ngIf="tableType != 'platform'">
+                <label class="control-label">PlatformAccountGroups</label>
+                <rl-tag-input
+                  [addOnBlur]="false"
+                  [autocomplete]="true"
+                  [autocompleteItems]="publicService.group_list"
+                  [(ngModel)]="newData.group_names"
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Add Groups here">
+                </rl-tag-input>
+              </div>
+              <div class="form-group" *ngIf="tableType == 'platform'">
+                <label class="control-label">Accounts</label>
+                <rl-tag-input
+                  [(ngModel)]="newData.accounts"
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Add accounts here">
+                </rl-tag-input>
+              </div>
+              <div class="form-group">
+                <label class="control-label" required>Description</label>
+                <textarea class="form-control" id="description" [(ngModel)]="newData.description" [ngModelOptions]="{standalone: true}" required></textarea>
+              </div>
+              <ul>
+                <li>Mandatory fields are marked with asterik</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row map-area" *ngIf="showCountryField()">
+            <div class="form-group map-section" *ngIf="zipCode.placeName && publicService.property_list.length">
+              <ng2-map zoom="7" [center]="mapData.center">
+                <marker (click)="showInfoWindow($event)"
+                        [position]="mapData.position"></marker>
+                <map-circle [center]="mapData.center"
+                            [strokeColor]="'#3afa33'"
+                            [strokeOpacity]="0.8"
+                            [strokeWeight]="1"
+                            [fillColor]="'#3afa33'"
+                            [editable]="false"
+                            [radius]="+publicService.property_list[1].value"
+                            draggable="false"></map-circle>
+              </ng2-map>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <button type="button" class="btn btn-default" (click)="onBackBtn()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onAddSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="tableType == 'multiple'">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-primary add-form">
+      <div class="panel-heading">
+        <a class="pull-left" (click)="onBackBtn()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        All Filters
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-1">
+              <div class="form-group">
+                <label class="control-label">Person Name</label>
+                <span class="validation-color"></span>
+                <input class="form-control" type="text" [(ngModel)]="filterData.personName" [ngModelOptions]="{standalone: true}" required>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Phone</label>
+                <span class="validation-color"></span>
+                <input class="form-control" type="text" [(ngModel)]="filterData.phoneName" [ngModelOptions]="{standalone: true}" required>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Company</label>
+                <span class="validation-color"></span>
+                <input class="form-control" type="text" [(ngModel)]="filterData.companyName" [ngModelOptions]="{standalone: true}" required>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">PlatformAccountGroups</label>
+                <rl-tag-input
+                  [addOnBlur]="false"
+                  [autocomplete]="true"
+                  [autocompleteItems]="publicService.group_list"
+                  [(ngModel)]="filterData.group_names"
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Add Groups here">
+                </rl-tag-input>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-2">
+              <div class="form-group">
+                <label class="control-label">Street</label>
+                <span class="validation-color"></span>
+                <input class="form-control" type="text" [(ngModel)]="filterData.streetName" [ngModelOptions]="{standalone: true}" required>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Email</label>
+                <span class="validation-color"></span>
+                <input class="form-control" type="text" [(ngModel)]="filterData.emailName" [ngModelOptions]="{standalone: true}" required>
+              </div>
+              <div class="form-group">
+                <label class="control-label" required>Description</label>
+                <textarea class="form-control" [(ngModel)]="filterData.description" [ngModelOptions]="{standalone: true}" required></textarea>
+              </div>
+              <ul>
+                <li>Mandatory fields are marked with asterik</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-1">
+              <div class="form-group">
+                <label class="control-label">Country</label>
+                <select class="form-control" [(ngModel)]="filterData.country" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let country of publicService.country_list" [value]="country.code">{{country.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 section-2">
+              <div class="form-group">
+                <label class="control-label">Zip</label>
+                <input class="form-control" type="text" [(ngModel)]="filterData.zip" [ngModelOptions]="{standalone: true}" (keydown)="zipcodeKeydown(2)" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="row map-area">
+            <div class="form-group map-section" *ngIf="zipCode.placeName && publicService.property_list.length">
+              <ng2-map zoom="7" [center]="mapData.center">
+                <marker (click)="showInfoWindow($event)"
+                        [position]="mapData.position"></marker>
+                <map-circle [center]="mapData.center"
+                            [strokeColor]="'#3afa33'"
+                            [strokeOpacity]="0.8"
+                            [strokeWeight]="1"
+                            [fillColor]="'#3afa33'"
+                            [editable]="false"
+                            [radius]="+publicService.property_list[1].value"
+                            draggable="false"></map-circle>
+              </ng2-map>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <button type="button" class="btn btn-default" (click)="onBackBtn()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onMultipleFilterSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

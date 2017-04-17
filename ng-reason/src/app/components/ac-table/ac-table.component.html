@@ -1,0 +1,92 @@
+<div class="row" *ngIf="!historyMode">
+  <div class="col-md-3 col-md-offset-1">
+    <a class="pull-left add-new" (click)="onAddNew()"><i class="fa fa-plus"></i>Add new {{tableType}}</a>
+  </div>
+  <div class="col-md-2">
+    <a class="add-new" (click)="onAddMultiple()" *ngIf="tableType=='filter'"><i class="fa fa-plus"></i>Add multiple filters</a>
+  </div>
+  <div class="col-md-5">
+    <pagination *ngIf="config.paging"
+                class="pagination-sm fly-left"
+                [(ngModel)]="page"
+                [totalItems]="length"
+                [itemsPerPage]="itemsPerPage"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+                [rotate]="false"
+                (pageChanged)="onChangeTable(config, $event)"
+                (numPages)="numPages = $event">
+    </pagination>
+  </div>
+</div>
+<br>
+<div class="row" [hidden]="editMode || historyMode">
+  <div class="col-md-10 col-md-offset-1 content-area">
+    <ng-table [config]="config"
+              (tableChanged)="onChangeTable(config)"
+              (cellClicked)="onCellClick($event, delete_confirm)"
+              [rows]="rows" [columns]="columns">
+    </ng-table>
+  </div>
+</div>
+<div class="row" *ngIf="!historyMode">
+  <div class="col-md-3 col-md-offset-1">
+    <pre *ngIf="config.paging" class="card card-block card-header page-status">Page {{page}} of {{numPages}}</pre>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <pagination *ngIf="config.paging"
+                class="pagination-sm fly-left"
+                [(ngModel)]="page"
+                [totalItems]="length"
+                [itemsPerPage]="itemsPerPage"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+                [rotate]="false"
+                (pageChanged)="onChangeTable(config, $event)"
+                (numPages)="numPages = $event">
+    </pagination>
+  </div>
+</div>
+<div class="row" *ngIf="historyMode">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-primary add-form history-table">
+      <div class="panel-heading">
+        <a class="pull-left" (click)="onBackBtn()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        History
+      </div>
+      <div class="panel-body no-map">
+        <table class="table table-condensed">
+          <thead>
+          <tr>
+            <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">Action</th>
+            <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">Modified Date</th>
+            <th class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">Modified User</th>
+            <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Name</th>
+            <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">FilterType</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of historyData">
+            <td class="v-align-middle text-center">{{item.action}}</td>
+            <td class="v-align-middle text-center">{{item.modified}}</td>
+            <td class="v-align-middle text-center">{{item.modifiedBy}}</td>
+            <td class="v-align-middle text-center">{{item.name}}</td>
+            <td class="v-align-middle text-center">{{item.type}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal cssClass="modal-delete-confirm" #delete_confirm [keyboard]="false" [backdrop]="static">
+  <modal-body>
+    Are you sure want to delete the {{tableType}} "{{currentItem.name}}"?
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-default" (click)="onDeleteClick(delete_confirm, currentItem)">Ok</button>
+    <button type="button" class="btn btn-default" data-dismiss="delete_confirm" (click)="delete_confirm.dismiss()">Cancel</button>
+  </modal-footer>
+</modal>
+

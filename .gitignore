@@ -1,0 +1,22 @@
+# play specific files
+bin
+target
+project/target
+project/project/target
+project/.sbtserver*
+logs
+libexec
+.sbtserver*
+lib_managed
+RUNNING_PID
+conf/evolutions
+
+# eclipse specific files
+.classpath
+.project
+.settings
+
+# other files
+**/.Rhistory
+public/ng-assets
+.idea/

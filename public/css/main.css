@@ -1,0 +1,88 @@
+html {
+	overflow-y: scroll;
+}
+body.modal-open {
+	padding: 0px !important;
+}
+nav#main_nav_scala.navbar {
+	background-color: #2b2b2b;
+	border-radius: 0px;
+	border: none;
+}
+#main_nav_scala .navbar-toggle {
+	border-color: #333;
+}
+#main_nav_scala .navbar-toggle .icon-bar {
+	background-color: #fff;
+}
+nav#main_nav_scala.navbar .navbar-brand {
+	color: white;
+}
+nav#main_nav_scala.navbar .navbar-nav {
+	border: none !important;
+}
+nav#main_nav_scala.navbar li a {
+	-webkit-border-radius:0px;
+	-moz-border-radius:0px;
+	border-radius: 0px;
+	border: none !important;
+	color: white;
+	/*text-decoration: underline;*/
+	margin-bottom: 1px;
+	min-height: 50px;
+	padding: 15px 15px;
+}
+#main_nav_scala .nav>li>a:focus,#main_nav_scala .nav>li>a:hover {
+	background-color: #6b6b6b;
+}
+nav#main_nav_scala.navbar li.active a, nav#main_nav_scala.navbar li.active a:focus, nav#main_nav_scala.navbar li.active a:hover {
+	background-color: #838383;
+	text-decoration: none;
+	color: white;
+}
+footer {
+	padding-top: 20px;
+	color: #A0A0A0; 
+}
+
+iframe.chart {
+    width: 500px;
+    height: 200px;
+    border: none;
+    padding: 0px;
+    margin: 0 auto;
+    display: block;
+}
+
+.form-inline .form-group {
+	padding-right: 10px;
+}
+
+#swagger-ui-container {
+	font-size: 16px;
+}
+
+#swagger-ui-container .info {
+	height: 0px;
+}
+
+#swagger-ui-container .authorize-wrapper {
+	margin: 0px;
+}
+
+#swagger-ui-container ul {
+	padding-left: 0px;
+}
+
+#swagger-ui-container .footer {
+	display: none;
+}
+.m-t-60 {
+	margin-top: 60px !important;
+}
+.m-t-30 {
+	margin-top: 30px !important;
+}
+nav.navbar .navbar-brand {
+	color: white;
+}

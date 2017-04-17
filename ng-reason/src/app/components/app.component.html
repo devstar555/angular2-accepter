@@ -1,0 +1,27 @@
+<div class="tab-content">
+  <nav class="navbar m-t-50" id="sec_nav" [hidden]="!showNavbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-sec" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar-sec" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" role="tablist">
+          <li [routerLinkActive]="['active']"><a [routerLink]="['filters/person']">Person</a></li>
+          <li [routerLinkActive]="['active']"><a [routerLink]="['filters/company']">Company</a></li>
+          <li [routerLinkActive]="['active']"><a [routerLink]="['filters/street']">Street</a></li>
+          <li [routerLinkActive]="['active']"><a [routerLink]="['filters/phone']">Phone</a></li>
+          <li [routerLinkActive]="['active']"><a [routerLink]="['filters/email']">Email</a></li>
+          <li [routerLinkActive]="['active']"><a [routerLink]="['filters/all']">All</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</div>

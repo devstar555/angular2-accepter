@@ -1,0 +1,27 @@
+shell:
+  image: kanduat/alpine3.4-build
+  volumes:
+    - .:/mnt
+angular:
+  cached: true
+  build:
+    dockerfile_path: Dockerfile
+    path: ng-reason
+    image: accepter-build-angular
+  volumes:
+    - ./ng-reason:/mnt
+play:
+  cached: true
+  build:
+    dockerfile_path: Dockerfile.build
+    image: acceper-build-play
+  volumes:
+    - .:/mnt
+app:
+  build:
+    dockerfile_path: Dockerfile.package
+    image: accepter-app
+  volumes:
+    - .:/mnt
+  environment:
+    CONSUL_SERVICE: "/bin/sh -c"

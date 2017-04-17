@@ -1,0 +1,133 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+/*Removing margin of pagination in order to get closer to the filter table.*/
+.pagination {
+  margin: 0px;
+}
+/*Remove all font family of page label pre tag*/
+pre {
+  font-family: inherit;
+  background-color: transparent;
+}
+/*Reducing row height*/
+.table-filter.table>tbody>tr>td {
+  padding: 4px;
+}
+/*Country Flag size and no border*/
+.table-filter.table>tbody>tr>td .country-item .img-thumbnail {
+  width: 25px;
+  height: 25px;
+  border: none;
+}
+
+.tooltip-inner {
+  max-width: 500px !important;
+  white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+  white-space: -webkit-pre-wrap; /*Chrome & Safari */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  white-space: pre-wrap;       /* css-3 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  word-break: break-all;
+  white-space: normal;
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+
+/*persons table*/
+.table-filter{
+  border: 1px solid #cccccc;
+}
+.table-filter thead {
+  background-color: #FFFFFF;
+  color: black;
+  font-weight: bold;
+}
+.table-filter thead th {
+  text-align: center;
+  font-size: 14px;
+  border: none !important;
+}
+.table-filter thead th.accepter-col-action {
+  width: 20px;
+}
+.table-filter.table>thead>tr>th {
+  padding-bottom: 0px;
+}
+.table-filter tbody tr:first-child {
+  background-color: #FFFFFF;
+}
+.table-filter tbody tr:first-child td {
+  text-align: left;
+  border: none !important;
+}
+.table-filter thead tr th i.pull-right {
+	float: none !important;
+}
+.table-filter tbody tr:first-child td input {
+   width: 100% !important;
+}
+.table-filter tbody tr:first-child td .form-control {
+  height: 30px;
+}
+.table-filter tbody tr td:first-child,
+.table-filter tbody tr td:nth-child(2){
+  text-align: left;
+}
+.table-filter tbody tr td:last-child {
+  padding-right: 20px;
+}
+.table-filter tbody tr td:first-child {
+  padding-left: 20px;
+}
+
+.table-filter tbody tr td {
+  vertical-align: middle;
+}
+.table-filter tbody tr td div.country-item {
+  width: 80px;
+  display: block;
+  margin: auto;
+}
+.table-filter tbody tr td .country-item div{
+  display: block;
+  float: left;
+}
+.table-filter tbody tr td span {
+  margin-left: 15px;
+  display: block;
+  float: left;
+  padding-top: 3px;
+}
+.table-filter tbody tr td .action-btn {
+  font-size: 17px;
+  padding: 5px;
+  cursor: pointer;
+}
+/*Delete confirm dialog*/
+.modal-delete-confirm {
+  width: 500px;
+  margin: 25% auto;
+}
+.modal-delete-confirm .modal-body {
+  font-size: 19px;
+  color: #4f4f4f;
+  padding: 30px 70px;
+}
+.modal-delete-confirm .modal-footer {
+  padding-left: 125px;
+  padding-right: 125px;
+  background-color: #cfcfcf;
+}
+.modal-delete-confirm .modal-footer button.btn{
+  width: 100px;
+}
+.modal-delete-confirm .modal-footer button:first-child {
+  float: left;
+}
+/*Add element dialog*/

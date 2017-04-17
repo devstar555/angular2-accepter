@@ -1,0 +1,185 @@
+.m-b-10
+{
+  margin-bottom: 10px !important;
+}
+.m-b-20
+{
+  margin-bottom: 20px !important;
+}
+.m-b-30
+{
+  margin-bottom: 30px !important;
+}
+.m-l-30
+{
+  margin-bottom: 30px !important;
+}
+.m-t-20
+{
+  margin-top: 20px !important;
+}
+.m-t-60 {
+  margin-top: 60px !important;
+}
+/*Add form*/
+.home.panel {
+  border: none;
+  margin-top: 60px;
+}
+.home .panel-heading {
+  height:55px;
+  background-color: #cccccc;
+  background-image: none;
+  font-size: 23px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+}
+.home .panel-heading a {
+  color: #969696;
+  cursor: pointer;
+}
+.home .panel-body {
+  background-color: #eeeeee;
+  padding: 50px;
+}
+
+.home .panel-body .tile-test {
+  padding: 0px 0px 15px 0px;
+}
+
+.state-total.pass {
+  background-color: #009E0F;
+}
+.state-total.fail {
+  background-color: #CF2A27;
+}
+.state-total.pending {
+  background-color: #999999;
+}
+
+.state-street {
+  background-color: #A64D79;
+}
+.state-company {
+  background-color: #FF9900;
+}
+.state-person {
+  background-color: #2B78E4;
+}
+.state-phone {
+  background-color: #4da69f;
+}
+.state-email {
+  background-color: #3d2c91;
+}
+.home .panel-body i {
+  display: inline-block;
+  float: left;
+  margin-top: 12px;
+  padding: 0px 10px;
+  border-right: 1px solid white;
+  color: white;
+  text-align: center;
+}
+
+.home .panel-body .ctn {
+  display: inline-block;
+  padding-left: 20px;
+  color: white;
+}
+.home .panel-body .ctn h3 {
+  font-weight: bold;
+}
+.home .panel-body .ctn a {
+  color: white;
+  text-decoration: underline;
+  margin-left: 40px;
+}
+.state-total i {
+  font-size: 50px;
+}
+.state-person h3,
+.state-street h3,
+.state-company h3,
+.state-phone h3,
+.state-email h3 {
+  font-size: 20px;
+}
+.state-person i,
+.state-street i,
+.state-company i,
+.state-phone i,
+.state-email i {
+  font-size: 36px;
+  width: 56px;
+}
+
+.home .panel-body .sub-title {
+  color: #747474;
+  font-weight: bold;
+  margin-top: 55px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+
+/*Total detail div*/
+.test-detail.panel {
+  border: none;
+  margin-top: 60px;
+}
+.test-detail .panel-heading {
+  height:55px;
+  background-color: #cccccc;
+  background-image: none;
+  font-size: 23px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+}
+.test-detail .panel-heading a {
+  color: #969696;
+  cursor: pointer;
+}
+.test-detail .panel-body {
+  background-color: #eeeeee;
+  padding: 50px;
+}
+
+.test-detail .panel-body i {
+  display: inline-block;
+  float: left;
+  margin-top: 12px;
+  padding: 0px 10px;
+  border-right: 1px solid white;
+  color: white;
+}
+
+.test-detail .panel-body thead {
+  background-color: #565656;
+  color: white;
+  font-size: 23px;
+}
+.test-detail .panel-body tbody {
+  border: 1px solid #ccc;
+  background-color: white;
+}
+.test-detail .panel-body thead tr th {
+  padding: 18px;
+}
+
+.test-detail .panel-body tbody tr td {
+  padding: 12px;
+  font-size: 18px;
+}
+
+.test-detail .panel-body tbody tr td.pass {
+  color: green;
+  font-weight: bold;
+}
+.test-detail .panel-body tbody tr td.fail {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,11 @@
+FROM kanduat/alpine3.4-consul-java8
+MAINTAINER Dominik Bieringer <d.bieringer@dodax.com>
+
+ENV APPLICATION=accepter
+WORKDIR /opt/dodax/$APPLICATION
+ADD target/universal/*.zip /opt/dodax/$APPLICATION/tmp.zip
+RUN unzip -q *.zip && rm *.zip && DIR=`ls` && mv $DIR/* . && rm -rf $DIR
+RUN echo "{\"service\": {\"name\": \"$APPLICATION\", \"port\": 9000}}" > /etc/consul.d/service.json
+ENV CONSUL_SERVICE=bin/$APPLICATION
+RUN apk add --no-cache bash
+EXPOSE 9000
